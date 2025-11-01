@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amma Education Society - Empowering Communities Through Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #1B4D3E 0%, #D4A017 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .screen { display: none; opacity: 0; transition: opacity 0.5s ease; }
+        .screen.active { display: block; opacity: 1; }
+        .nav-link { transition: all 0.3s ease; }
+        .nav-link:hover { background-color: rgba(255,255,255,0.1); }
+        .nav-link.active { background-color: rgba(255,255,255,0.2); }
+        .hero-bg { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            z-index: -1; 
+        }
+        .gallery-img { transition: transform 0.3s ease; }
+        .gallery-img:hover { transform: scale(1.05); }
+        .logo-img{
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg sticky top-0 z-50" data-aos="fade-down">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 flex items-center justify-center">
+                        <img src="logo.webp" alt="Amma Education Society Logo" class="w-8 h-8 logo-img">
+                    </div>
+                    <span class="text-xl font-bold">Amma Education Society</span>
+                </div>
+                <div class="hidden md:flex space-x-1">
+                    <button onclick="showScreen('home')" class="nav-link px-4 py-2 rounded-lg font-medium active" id="nav-home">Home</button>
+                    <button onclick="showScreen('about')" class="nav-link px-4 py-2 rounded-lg font-medium" id="nav-about">About</button>
+                    <button onclick="showScreen('programs')" class="nav-link px-4 py-2 rounded-lg font-medium" id="nav-programs">Programs</button>
+                    <button onclick="showScreen('contact')" class="nav-link px-4 py-2 rounded-lg font-medium" id="nav-contact">Contact</button>
+                </div>
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden pb-4">
+                <button onclick="showScreen('home')" class="block w-full text-left px-4 py-2 rounded-lg font-medium nav-link">Home</button>
+                <button onclick="showScreen('about')" class="block w-full text-left px-4 py-2 rounded-lg font-medium nav-link">About</button>
+                <button onclick="showScreen('programs')" class="block w-full text-left px-4 py-2 rounded-lg font-medium nav-link">Programs</button>
+                <button onclick="showScreen('contact')" class="block w-full text-left px-4 py-2 rounded-lg font-medium nav-link">Contact</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Screen -->
+    <div id="home-screen" class="screen active">
+        <!-- Hero Section -->
+        <section class="relative text-white py-20 overflow-hidden">
+            <img src="banner-bg5.jpg" alt="Hero Background" class="hero-bg">
+            <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+            <div class="container mx-auto px-6 text-center relative z-10" data-aos="fade-up">
+                <div class="mb-8">
+                    <div class="inline-flex items-center justify-center w-24 h-24 mb-6">
+                        <!-- <img src="https://images.unsplash.com/photo-1516321310764-3f3c920b1812?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Amma Education Society Logo" class="w-12 h-12"> -->
+                    </div>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">Empowering Communities</h1>
+                <p class="text-xl md:text-2xl font-light mb-8 max-w-3xl mx-auto">Through Education, Gender Equality, Youth Development & Technology</p>
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <span class="bg-white bg-opacity-20 px-6 py-3 rounded-full text-lg">📍 Kandukur, Andhra Pradesh</span>
+                    <span class="bg-white bg-opacity-20 px-6 py-3 rounded-full text-lg">📅 Since 1997</span>
+                </div>
+                <button onclick="showScreen('about')" class="bg-yellow-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-700 transition-colors duration-300 shadow-lg">
+                    Learn More About Us
+                </button>
+            </div>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <div class="card-hover p-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="text-4xl font-bold text-green-800 mb-2">27+</div>
+                        <div class="text-gray-600">Years of Service</div>
+                    </div>
+                    <div class="card-hover p-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="text-4xl font-bold text-yellow-600 mb-2">4</div>
+                        <div class="text-gray-600">Focus Areas</div>
+                    </div>
+                    <div class="card-hover p-6" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="text-4xl font-bold text-green-800 mb-2">1000+</div>
+                        <div class="text-gray-600">Lives Impacted</div>
+                    </div>
+                    <div class="card-hover p-6" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="text-4xl font-bold text-yellow-600 mb-2">50+</div>
+                        <div class="text-gray-600">Programs</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievement Cards -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Our Impact</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gradient-to-br from-green-50 to-yellow-50 rounded-xl shadow-lg p-8 card-hover text-center" data-aos="fade-right">
+                        <div class="w-16 h-16 bg-green-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">500+</h3>
+                        <p class="text-gray-600 mb-4">Students Educated</p>
+                        <p class="text-sm text-gray-500">Through our comprehensive education programs</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-green-50 to-yellow-50 rounded-xl shadow-lg p-8 card-hover text-center" data-aos="fade-up">
+                        <div class="w-16 h-16 bg-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">200+</h3>
+                        <p class="text-gray-600 mb-4">Women Empowered</p>
+                        <p class="text-sm text-gray-500">Through skill development and leadership programs</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-green-50 to-yellow-50 rounded-xl shadow-lg p-8 card-hover text-center" data-aos="fade-left">
+                        <div class="w-16 h-16 bg-green-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">15+</h3>
+                        <p class="text-gray-600 mb-4">Communities Served</p>
+                        <p class="text-sm text-gray-500">Across Andhra Pradesh region</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Focus Areas Preview -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Our Focus Areas</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-8 card-hover text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-green-800" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.84L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Education</h3>
+                        <p class="text-gray-600 mb-4">Quality educational opportunities for underserved communities</p>
+                        <button onclick="showScreen('programs')" class="text-yellow-600 font-medium hover:underline">Learn More →</button>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-8 card-hover text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Gender Equality</h3>
+                        <p class="text-gray-600 mb-4">Empowering women through education and skill development</p>
+                        <button onclick="showScreen('programs')" class="text-yellow-600 font-medium hover:underline">Learn More →</button>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-8 card-hover text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-green-800" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Youth Development</h3>
+                        <p class="text-gray-600 mb-4">Nurturing potential through comprehensive programs</p>
+                        <button onclick="showScreen('programs')" class="text-yellow-600 font-medium hover:underline">Learn More →</button>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-8 card-hover text-center" data-aos="fade-up" data-aos-delay="400">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Technology</h3>
+                        <p class="text-gray-600 mb-4">Leveraging tech for enhanced educational outcomes</p>
+                        <button onclick="showScreen('programs')" class="text-yellow-600 font-medium hover:underline">Learn More →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Screen -->
+    <div id="about-screen" class="screen">
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h1 class="text-5xl font-bold text-gray-800 mb-6">About Amma Education Society</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Dedicated to transforming lives through comprehensive educational initiatives since 1997</p>
+                </div>
+
+                <!-- Mission & Vision -->
+                <div class="grid md:grid-cols-2 gap-12 mb-16">
+                    <div class="bg-white rounded-2xl shadow-xl p-8" data-aos="fade-right">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-green-800" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Our Mission</h2>
+                        <p class="text-gray-600 leading-relaxed">To empower communities through quality education, promote gender equality, foster child and youth development, and leverage technology for sustainable positive change in society.</p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-xl p-8" data-aos="fade-left">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Our Vision</h2>
+                        <p class="text-gray-600 leading-relaxed">A society where every individual has access to quality education, equal opportunities regardless of gender, and the tools needed to reach their full potential through innovative approaches.</p>
+                    </div>
+                </div>
+
+                <!-- History Timeline -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Journey</h2>
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4" data-aos="fade-right" data-aos-delay="100">
+                            <div class="w-12 h-12 bg-green-800 rounded-full flex items-center justify-center text-white font-bold">1997</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Foundation</h3>
+                                <p class="text-gray-600">Amma Education Society was established in Kandukur, Andhra Pradesh with registration number 696 of 1997, beginning our mission to transform communities through education.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4" data-aos="fade-right" data-aos-delay="200">
+                            <div class="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center text-white font-bold">2017</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Expansion</h3>
+                                <p class="text-gray-600">Received additional registration AP/2017/0115196, expanding our reach and formalizing our comprehensive approach to community development.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4" data-aos="fade-right" data-aos-delay="300">
+                            <div class="w-12 h-12 bg-green-800 rounded-full flex items-center justify-center text-white font-bold">2024</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Present Day</h3>
+                                <p class="text-gray-600">Continuing our 27+ year legacy with innovative programs in education, gender equality, youth development, and technology integration.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Testimonials -->
+                <div class="mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-aos="fade-up">What People Say</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-xl shadow-lg p-6 card-hover" data-aos="fade-up" data-aos-delay="100">
+                            <video controls class="w-full rounded-lg mb-4" loading="lazy">
+                                <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-smiling-at-camera-3045-large.mp4" type="video/mp4">
+                            </video>
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-green-800 font-bold text-lg">P</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Priya Sharma</h4>
+                                    <p class="text-sm text-gray-500">Program Beneficiary</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 italic">"The education support program helped my daughter complete her studies. Today she's a teacher herself, inspiring other children in our community."</p>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-lg p-6 card-hover" data-aos="fade-up" data-aos-delay="200">
+                            <video controls class="w-full rounded-lg mb-4" loading="lazy">
+                                <source src="https://assets.mixkit.co/videos/preview/mixkit-man-speaking-to-camera-3044-large.mp4" type="video/mp4">
+                            </video>
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-yellow-600 font-bold text-lg">R</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Rajesh Kumar</h4>
+                                    <p class="text-sm text-gray-500">Community Leader</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 italic">"Amma Education Society has transformed our village. The youth development programs have given our children hope and direction for their future."</p>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-lg p-6 card-hover" data-aos="fade-up" data-aos-delay="300">
+                            <video controls class="w-full rounded-lg mb-4" loading="lazy">
+                                <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-speaking-to-camera-3046-large.mp4" type="video/mp4">
+                            </video>
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-green-800 font-bold text-lg">S</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Sunita Devi</h4>
+                                    <p class="text-sm text-gray-500">Self-Help Group Member</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 italic">"Through the women's empowerment program, I learned new skills and started my own business. Now I can support my family independently."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Registration Details -->
+                <div class="bg-gradient-to-r from-green-50 to-yellow-50 rounded-2xl p-8 md:p-12" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Legal Information</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-right">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Registration Details</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Primary Registration:</span>
+                                    <span class="font-medium text-gray-800">696 of 1997</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Additional Registration:</span>
+                                    <span class="font-medium text-gray-800">AP/2017/0115196</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Organization Type:</span>
+                                    <span class="font-medium text-gray-800">Non-Profit Society</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-left">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Location & Contact</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Headquarters:</span>
+                                    <span class="font-medium text-gray-800">Kandukur</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">State:</span>
+                                    <span class="font-medium text-gray-800">Andhra Pradesh</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Established:</span>
+                                    <span class="font-medium text-gray-800">1997</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Years of Service:</span>
+                                    <span class="font-medium text-gray-800">27+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Programs Screen -->
+    <div id="programs-screen" class="screen">
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h1 class="text-5xl font-bold text-gray-800 mb-6">Our Programs</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive initiatives across four key areas of community development</p>
+                </div>
+
+                <!-- Image Gallery -->
+                <div class="mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center" data-aos="fade-up">Program Highlights</h2>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="overflow-hidden rounded-xl" data-aos="zoom-in">
+                            <img src="education.jpg" alt="Education Program" class="gallery-img w-full h-64 object-cover" loading="lazy">
+                        </div>
+                        <div class="overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="100">
+                            <img src="women empoweerment.jpg" alt="Women's Empowerment" class="gallery-img w-full h-64 object-cover" loading="lazy">
+                        </div>
+                        <div class="overflow-hidden rounded-xl" data-aos="zoom-in" data-aos-delay="200">
+                            <img src="youth development.jpg" alt="Youth Development" class="gallery-img w-full h-64 object-cover" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Programs -->
+                <div class="mb-16">
+                    <div class="bg-green-50 rounded-2xl p-8 md:p-12" data-aos="fade-up">
+                        <div class="flex items-center mb-8">
+                            <div class="w-16 h-16 bg-green-800 rounded-full flex items-center justify-center mr-6">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.84L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-gray-800">Education Programs</h2>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Primary Education Support</h3>
+                                <p class="text-gray-600">Providing educational resources and support to primary school children in underserved communities.</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="200">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Adult Literacy Programs</h3>
+                                <p class="text-gray-600">Empowering adults with basic literacy and numeracy skills for better livelihood opportunities.</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="300">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Scholarship Programs</h3>
+                                <p class="text-gray-600">Financial assistance for deserving students to pursue higher education and achieve their dreams.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gender Programs -->
+                <div class="mb-16">
+                    <div class="bg-yellow-50 rounded-2xl p-8 md:p-12" data-aos="fade-up">
+                        <div class="flex items-center mb-8">
+                            <div class="w-16 h-16 bg-yellow-600 rounded-full flex items-center justify-center mr-6">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-gray-800">Gender Equality Programs</h2>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Women's Empowerment</h3>
+                                <p class="text-gray-600">Skills training and leadership development programs for women in rural communities.</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="200">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Self-Help Groups</h3>
+                                <p class="text-gray-600">Organizing women into self-help groups for financial independence and community support.</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="300">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Awareness Campaigns</h3>
+                                <p class="text-gray-600">Educational campaigns on women's rights, health, and gender equality in communities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Youth Development -->
+                <div class="mb-16">
+                    <div class="bg-green-50 rounded-2xl p-8 md:p-12" data-aos="fade-up">
+                        <div class="flex items-center mb-8">
+                            <div class="w-16 h-16 bg-green-800 rounded-full flex items-center justify-center mr-6">
+                               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-gray-800">Child & Youth Development</h2>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Skill Development</h3>
+                                <p class="text-gray-600">Vocational training programs to equip youth with marketable skills for employment.</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="200">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Sports & Recreation</h3>
+                                <p class="text-gray-600">Organizing sports activities and recreational programs for holistic child development.</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="300">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Mentorship Programs</h3>
+                                <p class="text-gray-600">Connecting youth with mentors for guidance in career and personal development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology Programs -->
+                <div class="mb-16">
+                    <div class="bg-yellow-50 rounded-2xl p-8 md:p-12" data-aos="fade-up">
+                        <div class="flex items-center mb-8">
+                            <div class="w-16 h-16 bg-yellow-600 rounded-full flex items-center justify-center mr-6">
+                               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-gray-800">Technology Programs</h2>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Digital Literacy</h3>
+                                <p class="text-gray-600">Teaching basic computer skills and digital literacy to bridge the digital divide.</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="200">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">E-Learning Platforms</h3>
+                                <p class="text-gray-600">Developing online learning resources and platforms for remote education access.</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-md" data-aos="fade-up" data-aos-delay="300">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Tech for Good</h3>
+                                <p class="text-gray-600">Using technology solutions to address community challenges and improve service delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Latest News & Events -->
+                <div class="mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center" data-aos="fade-up">Latest News & Events</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="100">
+                            <img src="awards.jpg" class="w-full h-48 object-cover" loading="lazy">
+                            <div class="p-6">
+                                <div class="text-sm text-green-800 font-medium mb-2">December 15, 2024</div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Annual Education Awards Ceremony</h3>
+                                <p class="text-gray-600 mb-4">Celebrating outstanding achievements of students from our education support programs.</p>
+                                <button class="text-yellow-600 font-medium hover:underline">Read More →</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="200">
+                            <img src="women skill.jpg" class="w-full h-48 object-cover" loading="lazy">
+                            <div class="p-6">
+                                <div class="text-sm text-yellow-600 font-medium mb-2">December 10, 2024</div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Women's Skill Development Workshop</h3>
+                                <p class="text-gray-600 mb-4">Three-day intensive workshop on entrepreneurship and digital marketing for women.</p>
+                                <button class="text-yellow-600 font-medium hover:underline">Read More →</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="300">
+                            <img src="digital-literacy-for-tribal-banner.jpg" class="w-full h-48 object-cover" loading="lazy">
+                            <div class="p-6">
+                                <div class="text-sm text-green-800 font-medium mb-2">December 5, 2024</div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Digital Literacy Program Launch</h3>
+                                <p class="text-gray-600 mb-4">New initiative to provide computer training to rural youth and adults.</p>
+                                <button class="text-yellow-600 font-medium hover:underline">Read More →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Screen -->
+    <div id="contact-screen" class="screen">
+        <section class="py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h1 class="text-5xl font-bold text-gray-800 mb-6">Get In Touch</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Connect with us to learn more about our programs or get involved in our mission</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Contact Information -->
+                    <div>
+                        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8" data-aos="fade-right">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6">Contact Information</h2>
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-green-800" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 mb-1">Address</h3>
+                                        <p class="text-gray-600">Kandukur, Andhra Pradesh, India</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 mb-1">Phone</h3>
+                                        <p class="text-gray-600">+91 8688138XXX</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-green-800" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 mb-1">Email</h3>
+                                        <p class="text-gray-600">info@ammaeducationsociety.org</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Registration Details -->
+                        <div class="bg-gradient-to-r from-green-50 to-yellow-50 rounded-2xl p-8" data-aos="fade-left">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-6">Legal Information</h2>
+                            <div class="space-y-4">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Primary Registration:</span>
+                                    <span class="font-medium text-gray-800">696 of 1997</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Additional Registration:</span>
+                                    <span class="font-medium text-gray-800">AP/2017/0115196</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Organization Type:</span>
+                                    <span class="font-medium text-gray-800">Non-Profit Society</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Established:</span>
+                                    <span class="font-medium text-gray-800">1997</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-white rounded-2xl shadow-xl p-8" data-aos="fade-left">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Send us a Message</h2>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                            <p class="text-yellow-800 text-sm">📧 <strong>Demo Form:</strong> This is a sample contact form for demonstration purposes.</p>
+                        </div>
+                        <form class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">First Name</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-800 focus:border-transparent" placeholder="Your first name">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">Last Name</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-800 focus:border-transparent" placeholder="Your last name">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-800 focus:border-transparent" placeholder="your.email@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Subject</label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-800 focus:border-transparent">
+                                    <option>General Inquiry</option>
+                                    <option>Program Information</option>
+                                    <option>Volunteer Opportunities</option>
+                                    <option>Partnership</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-800 focus:border-transparent" placeholder="Tell us how we can help you..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-green-800 hover:bg-green-900 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300 shadow-lg hover:shadow-xl">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white py-12" data-aos="fade-up">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold mb-4">Amma Education Society</h3>
+                    <p class="text-gray-200 mb-4">Empowering Communities Since 1997</p>
+                    <p class="text-gray-200 text-sm">Kandukur, Andhra Pradesh</p>
+                </div>
+
+                <div class="text-center">
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <button onclick="showScreen('about')" class="block mx-auto text-gray-200 hover:text-white transition-colors">About Us</button>
+                        <button onclick="showScreen('programs')" class="block mx-auto text-gray-200 hover:text-white transition-colors">Our Programs</button>
+                        <button onclick="showScreen('contact')" class="block mx-auto text-gray-200 hover:text-white transition-colors">Contact</button>
+                    </div>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex justify-center md:justify-end space-x-4">
+                        <a href="#" class="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center hover:bg-yellow-700 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-900 rounded-full flex items-center justify-center hover:bg-green-950 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center hover:bg-yellow-700 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-900 rounded-full flex items-center justify-center hover:bg-green-950 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center hover:bg-yellow-700 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-200 text-sm">📧 ammaskillinghubs@gmail.com</p>
+                        <p class="text-gray-200 text-sm">📞 +91 8688138XXX</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-600 pt-6 text-center">
+                <p class="text-gray-200 text-sm">
+                    © 2024 Amma Education Society. All rights reserved. | Reg. No: 696 of 1997 | AP/2017/0115196
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        function showSearch() {
+            document.getElementById('search-bar').classList.toggle('hidden');
+        }
+
+        function showScreen(screenName) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => {
+                screen.classList.remove('active');
+                screen.style.opacity = '0';
+            });
+
+            const targetScreen = document.getElementById(screenName + '-screen');
+            targetScreen.classList.add('active');
+            setTimeout(() => {
+                targetScreen.style.opacity = '1';
+                AOS.refresh();
+            }, 100);
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            document.getElementById('nav-' + screenName).classList.add('active');
+
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.style.transition = 'opacity 0.3s ease';
+            mobileMenu.style.opacity = mobileMenu.classList.contains('hidden') ? '0' : '1';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255,255,255,0.3)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! This is a demo form. In a real implementation, this would send your message to Amma Education Society.');
+                });
+            }
+
+            // Lazy load observer
+            const lazyElements = document.querySelectorAll('[loading="lazy"]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        if (element.tagName === 'IMG' || element.tagName === 'VIDEO') {
+                            element.src = element.dataset.src || element.querySelector('source')?.dataset.src;
+                        }
+                        observer.unobserve(element);
+                    }
+                });
+            }, { rootMargin: '200px' });
+
+            lazyElements.forEach(element => {
+                if (element.tagName === 'IMG') {
+                    element.dataset.src = element.src;
+                    element.src = '';
+                } else if (element.tagName === 'VIDEO') {
+                    const source = element.querySelector('source');
+                    if (source) {
+                        source.dataset.src = source.src;
+                        source.src = '';
+                    }
+                }
+                observer.observe(element);
+            });
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
